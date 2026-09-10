@@ -1,10 +1,10 @@
 public class Note {
     private int id;
-    private String text;
+    private String note;
 
     public Note(int id, String text) {
         this.id = id;
-        this.text = text;
+        this.note = note;
 
     }
 
@@ -12,12 +12,12 @@ public class Note {
         return id;
     }
     public String getText() {
-        return text;
+        return note;
     }
 
     @Override
     public String toString() {
-        return "["+id +"]"  + " " + text;
+        return "["+id +"]"  + " " + note;
     }
 
 

@@ -2,11 +2,11 @@ import java.util.List;
 
 public interface NoteRepository {
 
-    public int getNote(int id, List<Note> notes);
+    public Note getNote(int id);
+    public Note createNote(String note);
 
-    public int deleteNote(int id);
+    public boolean deleteNote(int id);
+    public boolean updateNote(int id, String note);
 
-    public String updateNote(int id, String text);
-
-    public String createNote(String text);
+    public List<Note> getAllNotes();
 }
