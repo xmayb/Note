@@ -33,9 +33,7 @@ public class InMemoryNoteRepository implements NoteRepository {
         }else{
             return false;
         }
-
-
-
+        return true;
     }
 
     @Override
