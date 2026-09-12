@@ -1,4 +1,5 @@
-import java.util.HashMap;
+
+import java.util.List;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -21,28 +22,39 @@ public class Main {
 
             System.out.println("Write your choice: ");
             int choice = scanner.nextInt();
+
+            int id = scanner.nextInt();
             switch (choice){
 
                 case 1:
                     scanner.nextLine();
+                    String text = scanner.nextLine();
+                    service.createNote(text);
+                    break;
                 case 2:
-                    service.getNote(choice);
-                    int id = scanner.nextInt();
-                    System.out.print("Введите id: " + id + "\n");
+                    if(service.getNote(id) == null) {
+                    System.out.println("Note not found");
 
+                    }else {
+                        System.out.println("Enter note id:  ");
+                        service.getNote(id);
+                        scanner.nextLine();
+                    }
                     break;
                 case 3:
-                    int id = scanner.nextInt();
-                    System.out.print("Введите id: " + id + "\n");
-
+                    service.deleteNote(id);
+                    System.out.print("Enter id: \n");
                     break;
                 case 4:
-                    service.getAllNotes();
+                    List<Note> list = service.getAllNotes();
                     list.forEach(System.out::println);
                     break;
                 case 5:
-                    service.updateNote(choice, "The Nore was updated");
-                    System.out.print("Введите id: "); int id = scanner.nextInt();
+                    System.out.println("Enter id:");
+                    scanner.nextLine();
+                    String text1 = scanner.nextLine();
+                    service.updateNote(id, text1);
+
                     break;
                 case 6: break;
 
