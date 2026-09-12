@@ -11,11 +11,12 @@ public class Main {
 
 
         Scanner scanner = new Scanner(System.in);
-        while(true){
-            System.out.print("Menu: 1 -> is create Note\n" +
+  while(true){
+            System.out.print("Menu: \n" +
+                    "1 -> is create Note\n" +
                     "2 -> is get Note \n" +
                     "3 -> delete Note\n" +
-                    "4 -> get all Notes\n " +
+                    "4 -> get all Notes\n" +
                     "5 -> update Note\n" +
                     "6 -> break \n" );
 
@@ -23,27 +24,29 @@ public class Main {
             System.out.println("Write your choice: ");
             int choice = scanner.nextInt();
 
-            int id = scanner.nextInt();
             switch (choice){
 
                 case 1:
                     scanner.nextLine();
                     String text = scanner.nextLine();
-                    service.createNote(text);
+                    Note created = service.createNote(text);
+                    System.out.println("Note created: " + created);
                     break;
                 case 2:
-                    if(service.getNote(id) == null) {
+                    System.out.println("Enter ID: ");
+                    int getId = scanner.nextInt();
+                    Note found = service.getNote(getId);
+                    if(found == null) {
                     System.out.println("Note not found");
-
                     }else {
-                        System.out.println("Enter note id:  ");
-                        service.getNote(id);
-                        scanner.nextLine();
+                        System.out.println(found);
                     }
                     break;
                 case 3:
-                    service.deleteNote(id);
-                    System.out.print("Enter id: \n");
+                    System.out.println("Enter ID: ");
+                    int delId = scanner.nextInt();
+                    boolean deleted = service.deleteNote(delId);
+                    System.out.println(deleted ? "Note delated " : "Note not found");
                     break;
                 case 4:
                     List<Note> list = service.getAllNotes();
@@ -51,12 +54,14 @@ public class Main {
                     break;
                 case 5:
                     System.out.println("Enter id:");
+                    int updId = scanner.nextInt();
                     scanner.nextLine();
-                    String text1 = scanner.nextLine();
-                    service.updateNote(id, text1);
-
+                    String newText = scanner.nextLine();
+                    boolean update = service.updateNote(updId, newText);
+                    System.out.println(update ? "Note updated" : "Note not found");
                     break;
-                case 6: break;
+                case 6:
+                    return;
 
             }
 
