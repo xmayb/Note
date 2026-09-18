@@ -1,8 +1,12 @@
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Note {
     private int id;
     private String note;
 
-    public Note(int id, String note) {
+    @JsonCreator
+    public Note(@JsonProperty("id") int id,@JsonProperty("text") String note) {
         this.id = id;
         this.note = note;
 
@@ -11,7 +15,7 @@ public class Note {
     public int getId() {
         return id;
     }
-    public String getText() {
+    public String getNote() {
         return note;
     }
 
