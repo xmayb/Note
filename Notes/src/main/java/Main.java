@@ -9,7 +9,7 @@ import java.util.Scanner;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        NoteRepository repository = new InMemoryNoteRepository();
+        NoteRepository repository = new JsonNoteRepository();
         NoteService service = new NoteService(repository);
 
 

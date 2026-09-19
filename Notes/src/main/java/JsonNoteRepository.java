@@ -3,6 +3,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,15 @@ public class JsonNoteRepository implements NoteRepository {
 
     private Map<Integer, Note> notes = new HashMap<>();
     private int nextId;
+
+    private void save() {
+        try {
+            mapper.writeValue(new File(FILE_PATH), new ArrayList<>(notes.values()));
+
+        }catch (IOException e) {
+            throw new RuntimeException("cannot save notes to file" + e);
+        }
+    }
 
     public JsonNoteRepository() {
         File file = new File(FILE_PATH);
@@ -38,26 +48,40 @@ public class JsonNoteRepository implements NoteRepository {
 
     @Override
     public Note getNote(int id) {
-        return null;
+        return notes.get(id);
     }
 
     @Override
     public Note createNote(String note) {
-        return null;
+        Note n = new Note(nextId, note);
+        notes.put(nextId++, n);
+        save();
+        return n;
     }
 
     @Override
     public boolean deleteNote(int id) {
-        return false;
+        boolean removed = notes.remove(id) != null ;
+        if(removed) {
+            save();
+        }
+        return removed;
     }
 
     @Override
     public boolean updateNote(int id, String note) {
-        return false;
+        if(notes.containsKey(id)) {
+            Note n = notes.get(id);
+            notes.put(id, n);
+            save();
+            return true;
+        }else {
+            return false;
+        }
     }
 
     @Override
     public List<Note> getAllNotes() {
-        return List.of();
+        return new ArrayList<>(notes.values());
     }
 }
