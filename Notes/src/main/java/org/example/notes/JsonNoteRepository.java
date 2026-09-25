@@ -1,5 +1,8 @@
+package org.example.notes;
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.stereotype.Repository;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,6 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+@Repository
 public class JsonNoteRepository implements NoteRepository {
 
     private static final String FILE_PATH = "notes.json";

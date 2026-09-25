@@ -1,3 +1,5 @@
+package org.example.notes;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -6,7 +8,7 @@ public class Note {
     private String note;
 
     @JsonCreator
-    public Note(@JsonProperty("id") int id,@JsonProperty("text") String note) {
+    public Note(@JsonProperty("id") int id,@JsonProperty("note") String note) {
         this.id = id;
         this.note = note;
 
@@ -14,9 +16,6 @@ public class Note {
 
     public int getId() {
         return id;
-    }
-    public String getNote() {
-        return note;
     }
 
     @Override

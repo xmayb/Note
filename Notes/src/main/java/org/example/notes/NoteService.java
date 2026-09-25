@@ -1,5 +1,11 @@
+package org.example.notes;
+
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+
+@Service
 public class NoteService {
     private final NoteRepository repository;
 
